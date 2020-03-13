@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/touch-typing/static/css/main.469cc129.chunk.css",
-    "main.js": "/touch-typing/static/js/main.48582759.chunk.js",
-    "main.js.map": "/touch-typing/static/js/main.48582759.chunk.js.map",
+    "main.js": "/touch-typing/static/js/main.3cfc2496.chunk.js",
+    "main.js.map": "/touch-typing/static/js/main.3cfc2496.chunk.js.map",
     "runtime-main.js": "/touch-typing/static/js/runtime-main.77cc1f0e.js",
     "runtime-main.js.map": "/touch-typing/static/js/runtime-main.77cc1f0e.js.map",
     "static/js/2.f86bce18.chunk.js": "/touch-typing/static/js/2.f86bce18.chunk.js",
     "static/js/2.f86bce18.chunk.js.map": "/touch-typing/static/js/2.f86bce18.chunk.js.map",
     "index.html": "/touch-typing/index.html",
-    "precache-manifest.9df6c4f05be6ef713d7d76ef2b88bdf0.js": "/touch-typing/precache-manifest.9df6c4f05be6ef713d7d76ef2b88bdf0.js",
+    "precache-manifest.8f3da51054a6d0f5fc1ab6abbd5eccff.js": "/touch-typing/precache-manifest.8f3da51054a6d0f5fc1ab6abbd5eccff.js",
     "service-worker.js": "/touch-typing/service-worker.js",
     "static/css/main.469cc129.chunk.css.map": "/touch-typing/static/css/main.469cc129.chunk.css.map",
     "static/js/2.f86bce18.chunk.js.LICENSE.txt": "/touch-typing/static/js/2.f86bce18.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.77cc1f0e.js",
     "static/js/2.f86bce18.chunk.js",
     "static/css/main.469cc129.chunk.css",
-    "static/js/main.48582759.chunk.js"
+    "static/js/main.3cfc2496.chunk.js"
   ]
 }

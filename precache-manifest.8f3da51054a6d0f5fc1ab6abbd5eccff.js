@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "caf8c9c23a707dca852779a1b1823116",
+    "revision": "bfbb423f078ba5c2f60bc9531bfb25f8",
     "url": "/touch-typing/index.html"
   },
   {
-    "revision": "ca233b7689a4ecb24b7c",
+    "revision": "be5eadc5a26ce38c4166",
     "url": "/touch-typing/static/css/main.469cc129.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/touch-typing/static/js/2.f86bce18.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ca233b7689a4ecb24b7c",
-    "url": "/touch-typing/static/js/main.48582759.chunk.js"
+    "revision": "be5eadc5a26ce38c4166",
+    "url": "/touch-typing/static/js/main.3cfc2496.chunk.js"
   },
   {
     "revision": "1a603ebd298ae1ee422b",
