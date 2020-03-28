@@ -1,0 +1,11 @@
+@import '../../styles/colorVariables.scss';
+
+.textField {
+  width: 40%;
+  height: 200px;
+  background-color: $gray;
+  color: $dark;
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px dashed $blue;
+}

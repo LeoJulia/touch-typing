@@ -40,6 +40,13 @@
 
         "react/no-unused-prop-types": "off", // Это всё ещё работает нестабильно
 
-        "prettier/prettier": ["error"]
+        "prettier/prettier": ["error"],
+
+        "import/prefer-default-export":  "off",
+        "linebreak-style": [0, "error", "windows"],
+        "import/order": "off",
+        "import/no-dynamic-require": "off",
+        "radix": "warn",
+        "global-require": "off"
     }
 }
