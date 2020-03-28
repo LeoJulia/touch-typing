@@ -1,12 +1,13 @@
 import React from 'react';
-import { TextField } from '../components';
+import { TextField, TextInput } from '../components';
 
 import styles from './TouchTyping.scss';
 
 function App() {
   return (
     <div className={styles.App}>
-      <TextField text="It is first line of my project" />
+      <TextField text="It is the first line of my project" />
+      <TextInput />
     </div>
   );
 }
