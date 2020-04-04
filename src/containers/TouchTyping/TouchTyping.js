@@ -16,13 +16,17 @@ class TouchTypingClass extends Component {
     };
   }
 
+  onTyping = ({ value }) => {
+    console.log(value);
+  };
+
   render() {
     const { activeText } = this.state;
 
     return (
       <>
         <TextField text={activeText} />
-        <TextInput />
+        <TextInput onTyping={this.onTyping} />
       </>
     );
   }
