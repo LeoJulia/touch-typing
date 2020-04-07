@@ -9,3 +9,16 @@
   border-radius: 15px;
   border: 1px dashed $blue;
 }
+
+.focus {
+  color: $blue;
+  text-decoration: underline;
+}
+
+.error {
+  color: $red;
+}
+
+.beforeFocus {
+  color: grey;
+}

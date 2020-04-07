@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './TextInput.scss';
 
-export const TextInput = ({ onTyping }) => {
-  const onInput = ({ target }) => {
-    if (target.value.split('').includes(' ')) {
-      onTyping(target);
-      target.value = '';
-    }
+export class TextInput extends Component {
+  onInput = ({ target }) => {
+    const { onInput } = this.props;
+    onInput(target.value);
   };
 
-  return <input className={styles.textInput} type="text" onInput={onInput} />;
-};
+  render() {
+    const { value } = this.props;
+
+    return <input className={styles.textInput} type="text" onChange={this.onInput} value={value} />;
+  }
+}
 
 TextInput.propTypes = {
-  onTyping: PropTypes.func,
+  value: PropTypes.string.isRequired,
+  isError: PropTypes.bool,
+  onInput: PropTypes.func,
+};
+
+TextInput.defaultProps = {
+  onInput: () => {},
 };
