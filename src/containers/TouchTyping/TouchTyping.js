@@ -18,6 +18,7 @@ class TouchTypingClass extends Component {
       beforeFocusText: [],
       typeFocusText: '',
       afterFocusText: [],
+      isSuccessInput: false,
     };
   }
 
@@ -73,11 +74,21 @@ class TouchTypingClass extends Component {
         beforeFocusText: [...prevState.beforeFocusText, newBeforeFocusText],
         isError: false,
         typingText: '',
+        isSuccessInput: true,
       }));
     }
   };
 
   onInput = value => {
+    const { isSuccessInput } = this.state;
+
+    if (isSuccessInput) {
+      this.setState({
+        isSuccessInput: false,
+      });
+      return;
+    }
+
     this.setState({
       typingText: value,
     });
