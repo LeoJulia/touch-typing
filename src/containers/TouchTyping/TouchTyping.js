@@ -28,7 +28,7 @@ class TouchTypingClass extends Component {
     const afterFocusText = text.split(' ');
     const typeFocusText = afterFocusText.shift();
 
-    document.addEventListener('keyup', this.onTyping);
+    document.addEventListener('keypress', this.onTyping);
     document.addEventListener('keyup', this.onClear);
 
     this.setState({
@@ -39,7 +39,7 @@ class TouchTypingClass extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', this.onTyping);
+    document.removeEventListener('keypress', this.onTyping);
     document.removeEventListener('keyup', this.onClear);
   }
 
@@ -58,32 +58,22 @@ class TouchTypingClass extends Component {
   onTyping = ({ keyCode }) => {
     const { afterFocusText, typeFocusText, typingText } = this.state;
 
-    if (
-      (keyCode > 47 && keyCode < 91) ||
-      (keyCode > 95 && keyCode < 112) ||
-      (keyCode > 185 && keyCode < 193) ||
-      (keyCode > 218 && keyCode < 223) ||
-      keyCode === 32
-    ) {
-      const typeText = typingText.trim();
+    if (typeFocusText.indexOf(typingText) === -1) {
+      this.setState({
+        isError: true,
+      });
+    } else if (typeFocusText.length === typingText.length && keyCode === 32) {
+      const newAfterFocusText = [...afterFocusText];
+      const newBeforeFocusText = typeFocusText;
+      const newTypeFocusText = newAfterFocusText.shift();
 
-      if (typeFocusText.indexOf(typeText) === -1) {
-        this.setState({
-          isError: true,
-        });
-      } else if (typeFocusText.length === typeText.length && keyCode === 32) {
-        const newAfterFocusText = [...afterFocusText];
-        const newBeforeFocusText = typeFocusText;
-        const newTypeFocusText = newAfterFocusText.shift();
-
-        this.setState(prevState => ({
-          typeFocusText: newTypeFocusText,
-          afterFocusText: newAfterFocusText,
-          beforeFocusText: [...prevState.beforeFocusText, newBeforeFocusText],
-          isError: false,
-          typingText: '',
-        }));
-      }
+      this.setState(prevState => ({
+        typeFocusText: newTypeFocusText,
+        afterFocusText: newAfterFocusText,
+        beforeFocusText: [...prevState.beforeFocusText, newBeforeFocusText],
+        isError: false,
+        typingText: '',
+      }));
     }
   };
 
