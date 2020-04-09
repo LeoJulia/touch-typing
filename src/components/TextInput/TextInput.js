@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import styles from './TextInput.scss';
+import { white } from '../../styles/colorVariables';
+
+const StyledTextInput = styled.input`
+  margin-top: 15px;
+  width: 40%;
+  padding: 10px;
+  background-color: ${white};
+  color: $dark;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+`;
 
 export class TextInput extends Component {
   onInput = ({ target }) => {
@@ -12,7 +24,7 @@ export class TextInput extends Component {
   render() {
     const { value } = this.props;
 
-    return <input className={styles.textInput} type="text" onChange={this.onInput} value={value} />;
+    return <StyledTextInput type="text" onChange={this.onInput} value={value} />;
   }
 }
 
