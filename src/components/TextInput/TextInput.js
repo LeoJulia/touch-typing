@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { white } from '../../styles/colorVariables';
+import { white, gray } from '../../styles/colorVariables';
 
 const StyledTextInput = styled.input`
   margin-top: 15px;
@@ -13,6 +13,10 @@ const StyledTextInput = styled.input`
   border-radius: 15px;
   border: none;
   outline: none;
+
+  &:disabled {
+    background-color: ${gray};
+  }
 `;
 
 export class TextInput extends Component {
@@ -22,15 +26,17 @@ export class TextInput extends Component {
   };
 
   render() {
-    const { value } = this.props;
+    const { value, isFinish } = this.props;
 
-    return <StyledTextInput type="text" onChange={this.onInput} value={value} />;
+    return (
+      <StyledTextInput type="text" onChange={this.onInput} value={value} disabled={isFinish} />
+    );
   }
 }
 
 TextInput.propTypes = {
   value: PropTypes.string.isRequired,
-  isError: PropTypes.bool,
+  isFinish: PropTypes.bool,
   onInput: PropTypes.func,
 };
 

@@ -19,6 +19,7 @@ class TouchTypingClass extends Component {
       typeFocusText: '',
       afterFocusText: [],
       isSuccessInput: false,
+      isFinish: false,
     };
   }
 
@@ -89,6 +90,7 @@ class TouchTypingClass extends Component {
         isSuccessInput: true,
         beforeFocusText: [...prevState.beforeFocusText, newBeforeFocusText],
         afterFocusText: [],
+        isFinish: true,
       }));
     }
   };
@@ -109,7 +111,14 @@ class TouchTypingClass extends Component {
   };
 
   render() {
-    const { afterFocusText, typeFocusText, beforeFocusText, typingText, isError } = this.state;
+    const {
+      afterFocusText,
+      typeFocusText,
+      beforeFocusText,
+      typingText,
+      isError,
+      isFinish,
+    } = this.state;
 
     return (
       <>
@@ -119,7 +128,7 @@ class TouchTypingClass extends Component {
           afterFocus={afterFocusText.join(' ')}
           isError={isError}
         />
-        <TextInput value={typingText} isError={isError} onInput={this.onInput} />
+        <TextInput value={typingText} isFinish={isFinish} onInput={this.onInput} />
       </>
     );
   }
