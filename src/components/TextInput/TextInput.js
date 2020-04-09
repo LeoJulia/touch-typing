@@ -2,20 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { white, gray } from '../../styles/colorVariables';
-
 const StyledTextInput = styled.input`
   margin-top: 15px;
   width: 40%;
   padding: 10px;
-  background-color: ${white};
+  background-color: ${({ theme }) => theme.whiteColor};
   color: $dark;
   border-radius: 15px;
   border: none;
   outline: none;
 
   &:disabled {
-    background-color: ${gray};
+    background-color: ${({ theme }) => theme.greyColor};
   }
 `;
 

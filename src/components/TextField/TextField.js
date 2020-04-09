@@ -2,24 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { gray, dark, blue, red } from '../../styles/colorVariables';
-
 const StyledTextField = styled.div`
   width: 40%;
   height: 200px;
-  background-color: ${gray};
-  color: ${dark};
+  background-color: ${({ theme }) => theme.greyColor};
+  color: ${({ theme }) => theme.darkColor};
   padding: 15px;
   border-radius: 15px;
-  border: 1px dashed ${blue};
+  border: 1px dashed ${({ theme }) => theme.blueColor};
 `;
 
 const BeforeFocus = styled.span`
-  color: grey;
+  color: ${({ theme }) => theme.darkGreyColor};
 `;
 
 const Focus = styled.span`
-  color: ${props => (props.isError ? red : blue)};
+  color: ${({ isError, theme }) => (isError ? theme.redColor : theme.blueColor)};
   text-decoration: underline;
 `;
 

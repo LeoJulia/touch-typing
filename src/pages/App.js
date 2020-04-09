@@ -1,12 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import { TouchTyping } from '../containers';
-import { white, dark } from '../styles/colorVariables';
+
+const Variables = {
+  whiteColor: '#f9f7f7',
+  greyColor: '#dbe2ef',
+  darkGreyColor: '#808080',
+  blueColor: '#3f72af',
+  darkColor: '#112d4e',
+  redColor: '#f28c9f',
+};
 
 const StyledApp = styled.div`
-  background-color: ${dark};
-  color: ${white};
+  background-color: ${({ theme }) => theme.darkColor};
+  color: ${({ theme }) => theme.whiteColor};
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,9 +25,11 @@ const StyledApp = styled.div`
 
 function App() {
   return (
-    <StyledApp>
-      <TouchTyping />
-    </StyledApp>
+    <ThemeProvider theme={Variables}>
+      <StyledApp>
+        <TouchTyping />
+      </StyledApp>
+    </ThemeProvider>
   );
 }
 
