@@ -56,14 +56,16 @@ class TouchTypingClass extends Component {
     }
   };
 
-  onTyping = ({ keyCode }) => {
-    const { afterFocusText, typeFocusText, typingText } = this.state;
+  onTyping = ({ keyCode, key }) => {
+    const { afterFocusText, typeFocusText, typingText, isError } = this.state;
 
-    if (typeFocusText.indexOf(typingText) === -1) {
+    if (typeFocusText.indexOf(typingText + key) === -1) {
       this.setState({
         isError: true,
       });
-    } else if (typeFocusText.length === typingText.length && keyCode === 32) {
+    }
+
+    if (typeFocusText.length === typingText.length && keyCode === 32 && !isError) {
       const newAfterFocusText = [...afterFocusText];
       const newBeforeFocusText = typeFocusText;
       const newTypeFocusText = newAfterFocusText.shift();
