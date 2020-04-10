@@ -4,22 +4,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { TextField, TextInput } from '../../components';
+import { getActiveText, getStateRace } from '../../redux/selectors/typingText';
+import { setFinish } from '../../redux/actions/typingText';
 
-const mapStateToProps = ({ activeText }) => ({ activeText });
+const mapStateToProps = state => ({ text: getActiveText(state), isFinish: getStateRace(state) });
+const mapDispatchToProps = { onFinish: setFinish };
 
 class TouchTypingClass extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      text: props.activeText,
+      text: props.text,
       typingText: '',
       isError: false,
       beforeFocusText: [],
       typeFocusText: '',
       afterFocusText: [],
       isSuccessInput: false,
-      isFinish: false,
     };
   }
 
@@ -82,6 +84,7 @@ class TouchTypingClass extends Component {
     }
 
     if (afterFocusText.length === 0 && (key === '.' || key === '!' || key === '?')) {
+      const { onFinish } = this.props;
       const newBeforeFocusText = typeFocusText;
 
       this.setState(prevState => ({
@@ -90,8 +93,9 @@ class TouchTypingClass extends Component {
         isSuccessInput: true,
         beforeFocusText: [...prevState.beforeFocusText, newBeforeFocusText],
         afterFocusText: [],
-        isFinish: true,
       }));
+
+      onFinish();
     }
   };
 
@@ -111,14 +115,9 @@ class TouchTypingClass extends Component {
   };
 
   render() {
-    const {
-      afterFocusText,
-      typeFocusText,
-      beforeFocusText,
-      typingText,
-      isError,
-      isFinish,
-    } = this.state;
+    const { afterFocusText, typeFocusText, beforeFocusText, typingText, isError } = this.state;
+
+    const { isFinish } = this.props;
 
     return (
       <>
@@ -134,9 +133,10 @@ class TouchTypingClass extends Component {
   }
 }
 
-export const TouchTyping = connect(mapStateToProps)(TouchTypingClass);
+export const TouchTyping = connect(mapStateToProps, mapDispatchToProps)(TouchTypingClass);
 
 TouchTypingClass.propTypes = {
-  activeText: PropTypes.string,
-  isError: PropTypes.bool,
+  text: PropTypes.string,
+  isFinish: PropTypes.bool,
+  onFinish: PropTypes.func,
 };

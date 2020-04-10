@@ -7,7 +7,7 @@ const StyledTextInput = styled.input`
   width: 40%;
   padding: 10px;
   background-color: ${({ theme }) => theme.whiteColor};
-  color: $dark;
+  color: ${({ theme }) => theme.darkColor};
   border-radius: 15px;
   border: none;
   outline: none;
