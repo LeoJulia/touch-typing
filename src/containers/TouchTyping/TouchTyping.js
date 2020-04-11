@@ -71,7 +71,7 @@ class TouchTypingClass extends Component {
   onTyping = ({ keyCode, key }) => {
     const { afterFocusText, typeFocusText, typingText, isError } = this.state;
 
-    if (typeFocusText.indexOf(typingText + key) === -1) {
+    if (typeFocusText.split('')[typingText.length] !== key) {
       this.setState({
         isError: true,
       });

@@ -15,5 +15,5 @@ const StyledTextField = styled.div`
 export const TextField = ({ text }) => <StyledTextField>{text}</StyledTextField>;
 
 TextField.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.element,
 };
