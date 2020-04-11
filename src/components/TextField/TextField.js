@@ -12,26 +12,8 @@ const StyledTextField = styled.div`
   border: 1px dashed ${({ theme }) => theme.blueColor};
 `;
 
-const BeforeFocus = styled.span`
-  color: ${({ theme }) => theme.darkGreyColor};
-`;
-
-const Focus = styled.span`
-  color: ${({ isError, theme }) => (isError ? theme.redColor : theme.blueColor)};
-  text-decoration: underline;
-`;
-
-export const TextField = ({ typeFocus, afterFocus, beforeFocus, isError }) => (
-  <StyledTextField>
-    <BeforeFocus>{`${beforeFocus} `}</BeforeFocus>
-    <Focus isError={isError}>{typeFocus}</Focus>
-    <span>{` ${afterFocus}`}</span>
-  </StyledTextField>
-);
+export const TextField = ({ text }) => <StyledTextField>{text}</StyledTextField>;
 
 TextField.propTypes = {
-  typeFocus: PropTypes.string,
-  afterFocus: PropTypes.string,
-  beforeFocus: PropTypes.string,
-  isError: PropTypes.bool,
+  text: PropTypes.string,
 };

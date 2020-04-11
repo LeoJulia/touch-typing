@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import { TextField, TextInput } from '../../components';
@@ -9,6 +9,15 @@ import { setFinish } from '../../redux/actions/typingText';
 
 const mapStateToProps = state => ({ text: getActiveText(state), isFinish: getStateRace(state) });
 const mapDispatchToProps = { onFinish: setFinish };
+
+const BeforeFocus = styled.span`
+  color: ${({ theme }) => theme.darkGreyColor};
+`;
+
+const Focus = styled.span`
+  color: ${({ isError, theme }) => (isError ? theme.redColor : theme.blueColor)};
+  text-decoration: underline;
+`;
 
 class TouchTypingClass extends Component {
   constructor(props) {
@@ -116,17 +125,19 @@ class TouchTypingClass extends Component {
 
   render() {
     const { afterFocusText, typeFocusText, beforeFocusText, typingText, isError } = this.state;
-
     const { isFinish } = this.props;
+
+    const text = (
+      <span>
+        <BeforeFocus>{`${beforeFocusText.join(' ')} `}</BeforeFocus>
+        <Focus isError={isError}>{typeFocusText}</Focus>
+        {` ${afterFocusText.join(' ')}`}
+      </span>
+    );
 
     return (
       <>
-        <TextField
-          beforeFocus={beforeFocusText.join(' ')}
-          typeFocus={typeFocusText}
-          afterFocus={afterFocusText.join(' ')}
-          isError={isError}
-        />
+        <TextField text={text} />
         <TextInput value={typingText} isFinish={isFinish} onInput={this.onInput} />
       </>
     );
