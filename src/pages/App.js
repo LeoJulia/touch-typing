@@ -1,20 +1,16 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-webpack-loader-syntax */
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
 import { TouchTyping } from '../containers';
 
-const Variables = {
-  whiteColor: '#f9f7f7',
-  greyColor: '#dbe2ef',
-  darkGreyColor: '#808080',
-  blueColor: '#3f72af',
-  darkColor: '#112d4e',
-  redColor: '#f28c9f',
-};
+// eslint-disable-next-line max-len
+const variables = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!../styles/colorVariables.scss');
 
 const StyledApp = styled.div`
-  background-color: ${({ theme }) => theme.darkColor};
-  color: ${({ theme }) => theme.whiteColor};
+  background-color: ${({ theme }) => theme.dark};
+  color: ${({ theme }) => theme.white};
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +21,7 @@ const StyledApp = styled.div`
 
 function App() {
   return (
-    <ThemeProvider theme={Variables}>
+    <ThemeProvider theme={variables}>
       <StyledApp>
         <TouchTyping />
       </StyledApp>

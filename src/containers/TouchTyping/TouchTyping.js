@@ -11,11 +11,11 @@ const mapStateToProps = state => ({ text: getActiveText(state), isFinish: getSta
 const mapDispatchToProps = { onFinish: setFinish };
 
 const BeforeFocus = styled.span`
-  color: ${({ theme }) => theme.darkGreyColor};
+  color: ${({ theme }) => theme.darkGrey};
 `;
 
 const Focus = styled.span`
-  color: ${({ isError, theme }) => (isError ? theme.redColor : theme.blueColor)};
+  color: ${({ isError, theme }) => (isError ? theme.red : theme.blue)};
   text-decoration: underline;
 `;
 

@@ -6,14 +6,14 @@ const StyledTextInput = styled.input`
   margin-top: 15px;
   width: 40%;
   padding: 10px;
-  background-color: ${({ theme }) => theme.whiteColor};
-  color: ${({ theme }) => theme.darkColor};
+  background-color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.dark};
   border-radius: 15px;
   border: none;
   outline: none;
 
   &:disabled {
-    background-color: ${({ theme }) => theme.greyColor};
+    background-color: ${({ theme }) => theme.darkGray};
   }
 `;
 
