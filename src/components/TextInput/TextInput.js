@@ -24,10 +24,16 @@ export class TextInput extends Component {
   };
 
   render() {
-    const { value, isFinish } = this.props;
+    const { value, isFinish, setRef } = this.props;
 
     return (
-      <StyledTextInput type="text" onChange={this.onInput} value={value} disabled={isFinish} />
+      <StyledTextInput
+        type="text"
+        onChange={this.onInput}
+        value={value}
+        disabled={isFinish}
+        ref={setRef}
+      />
     );
   }
 }
@@ -36,8 +42,10 @@ TextInput.propTypes = {
   value: PropTypes.string.isRequired,
   isFinish: PropTypes.bool,
   onInput: PropTypes.func,
+  setRef: PropTypes.func,
 };
 
 TextInput.defaultProps = {
   onInput: () => {},
+  setRef: () => {},
 };

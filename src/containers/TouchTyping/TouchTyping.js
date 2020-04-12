@@ -4,11 +4,9 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import { TextField, TextInput } from '../../components';
-import { getActiveText, getStateRace } from '../../redux/selectors/typingText';
-import { setFinish } from '../../redux/actions/typingText';
-
-const mapStateToProps = state => ({ text: getActiveText(state), isFinish: getStateRace(state) });
-const mapDispatchToProps = { onFinish: setFinish };
+import { Timer } from '../Timer';
+import { getActiveText, getFinishData, getStartData, getTime } from '../../redux/selectors';
+import { setFinish, startTimer } from '../../redux/actions';
 
 const BeforeFocus = styled.span`
   color: ${({ theme }) => theme.darkGrey};
@@ -18,6 +16,29 @@ const Focus = styled.span`
   color: ${({ isError, theme }) => (isError ? theme.red : theme.blue)};
   text-decoration: underline;
 `;
+
+const Button = styled.div`
+  margin-top: 15px;
+  border-radius: 10px;
+  border: 1px dashed ${({ theme }) => theme.white};
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.red};
+  }
+`;
+
+const mapStateToProps = state => ({
+  text: getActiveText(state),
+  isFinish: getFinishData(state),
+  isStart: getStartData(state),
+  time: getTime(state),
+});
+
+const mapDispatchToProps = { onFinish: setFinish, start: startTimer };
 
 class TouchTypingClass extends Component {
   constructor(props) {
@@ -32,6 +53,8 @@ class TouchTypingClass extends Component {
       afterFocusText: [],
       isSuccessInput: false,
     };
+
+    this.input = null;
   }
 
   componentDidMount() {
@@ -49,6 +72,13 @@ class TouchTypingClass extends Component {
       typeFocusText,
       afterFocusText,
     });
+  }
+
+  componentDidUpdate() {
+    const { time } = this.props;
+    if (time) {
+      this.input.focus();
+    }
   }
 
   componentWillUnmount() {
@@ -123,9 +153,14 @@ class TouchTypingClass extends Component {
     });
   };
 
+  onStart = () => {
+    const { start } = this.props;
+    start();
+  };
+
   render() {
     const { afterFocusText, typeFocusText, beforeFocusText, typingText, isError } = this.state;
-    const { isFinish } = this.props;
+    const { isFinish, isStart } = this.props;
 
     const text = (
       <span>
@@ -135,10 +170,20 @@ class TouchTypingClass extends Component {
       </span>
     );
 
-    return (
+    return !isStart ? (
+      <Button onClick={this.onStart}>Start</Button>
+    ) : (
       <>
+        <Timer />
         <TextField text={text} />
-        <TextInput value={typingText} isFinish={isFinish} onInput={this.onInput} />
+        <TextInput
+          value={typingText}
+          isFinish={isFinish}
+          onInput={this.onInput}
+          setRef={el => {
+            this.input = el;
+          }}
+        />
       </>
     );
   }
@@ -149,5 +194,8 @@ export const TouchTyping = connect(mapStateToProps, mapDispatchToProps)(TouchTyp
 TouchTypingClass.propTypes = {
   text: PropTypes.string,
   isFinish: PropTypes.bool,
+  isStart: PropTypes.bool,
   onFinish: PropTypes.func,
+  start: PropTypes.func,
+  time: PropTypes.number,
 };
