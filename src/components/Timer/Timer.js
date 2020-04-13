@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const AnimatedTimer = styled.div`
+const TimerContainer = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
@@ -61,9 +61,9 @@ export class Timer extends Component {
     const { value } = this.state;
 
     return (
-      <AnimatedTimer>
+      <TimerContainer>
         <span>{value}</span>
-      </AnimatedTimer>
+      </TimerContainer>
     );
   }
 }
