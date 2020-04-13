@@ -3,7 +3,6 @@ import { FINISH, START_TIMER, START_RACE } from '../consts';
 const defaultStore = {
   typingText: {
     activeText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    isStart: false,
     isFinish: false,
     isTimer: false,
   },
@@ -16,7 +15,6 @@ export const typingText = (store = defaultStore.typingText, action) => {
     case START_TIMER:
       return {
         ...store,
-        isStart: true,
         isTimer: true,
       };
     case START_RACE:

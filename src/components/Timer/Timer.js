@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-
-import { getTimerData } from '../../redux/selectors';
-import { startRace } from '../../redux/actions';
 
 const AnimatedTimer = styled.div`
   position: absolute;
@@ -24,10 +20,7 @@ const AnimatedTimer = styled.div`
   }
 `;
 
-const mapStateToProps = state => ({ isTimer: getTimerData(state) });
-const mapDispatchToProps = { start: startRace };
-
-class TimerComponent extends Component {
+export class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,10 +48,10 @@ class TimerComponent extends Component {
       }),
       () => {
         const { value } = this.state;
-        const { start } = this.props;
+        const { onEnd } = this.props;
 
         if (value === -1) {
-          start(Date.now());
+          onEnd(Date.now());
         }
       },
     );
@@ -66,21 +59,15 @@ class TimerComponent extends Component {
 
   render() {
     const { value } = this.state;
-    const { isTimer } = this.props;
 
     return (
-      isTimer && (
-        <AnimatedTimer>
-          <span>{value}</span>
-        </AnimatedTimer>
-      )
+      <AnimatedTimer>
+        <span>{value}</span>
+      </AnimatedTimer>
     );
   }
 }
 
-export const Timer = connect(mapStateToProps, mapDispatchToProps)(TimerComponent);
-
-TimerComponent.propTypes = {
-  isTimer: PropTypes.bool,
-  start: PropTypes.func,
+Timer.propTypes = {
+  onEnd: PropTypes.func,
 };
