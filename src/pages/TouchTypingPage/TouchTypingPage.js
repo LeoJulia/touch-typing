@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { TouchTyping } from '../containers';
-import { getStartTime, getEndTime, getActiveText, getTimerData } from '../redux/selectors';
-import { startTimer, startRace, restartRace } from '../redux/actions';
-import { Results, Timer } from '../components';
+import { TouchTyping } from '../../containers';
+import { getStartTime, getEndTime, getActiveText, getTimerData } from '../../redux/selectors';
+import { startTimer, startRace, restartRace } from '../../redux/actions';
+import { Results, Timer } from './components';
 
 const Button = styled.button`
   margin-top: 15px;
