@@ -3,7 +3,7 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-import { TouchTyping } from '../containers';
+import { TouchTypingPage } from '../pages';
 
 // eslint-disable-next-line max-len
 const variables = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!../styles/colorVariables.scss');
@@ -19,14 +19,12 @@ const StyledApp = styled.div`
   font-size: 16px;
 `;
 
-function App() {
+export function App() {
   return (
     <ThemeProvider theme={variables}>
       <StyledApp>
-        <TouchTyping />
+        <TouchTypingPage />
       </StyledApp>
     </ThemeProvider>
   );
 }
-
-export default App;

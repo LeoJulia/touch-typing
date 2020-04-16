@@ -47,6 +47,7 @@
         "import/order": "off",
         "import/no-dynamic-require": "off",
         "radix": "warn",
-        "global-require": "off"
+        "global-require": "off",
+        "import/no-cycle": [2, { "maxDepth": 1 }]
     }
 }
