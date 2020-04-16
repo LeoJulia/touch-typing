@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { TextField, TextInput, Timer } from '../../components';
-import { getActiveText, getFinishData, getStartTime, getTimerData } from '../../redux/selectors';
-import { setFinish, startTimer, startRace } from '../../redux/actions';
+import { TextField, TextInput } from '../components';
+import { getActiveText, getStartTime, getEndTime } from '../redux/selectors';
+import { setFinish, startRace } from '../redux/actions';
 
 const BeforeFocus = styled.span`
-  color: ${({ theme }) => theme.darkGrey};
+  color: ${({ theme }) => theme.darkGray};
 `;
 
 const Focus = styled.span`
@@ -16,31 +16,13 @@ const Focus = styled.span`
   text-decoration: underline;
 `;
 
-const Button = styled.button`
-  margin-top: 15px;
-  border-radius: 10px;
-  border: 1px dashed ${({ theme }) => theme.white};
-  padding: 5px;
-  width: 100px;
-  text-align: center;
-  background-color: transparent;
-  color: ${({ theme }) => theme.white};
-  outline: none;
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.red};
-  }
-`;
-
 const mapStateToProps = state => ({
   text: getActiveText(state),
-  isFinish: getFinishData(state),
   startTime: getStartTime(state),
-  isTimer: getTimerData(state),
+  endTime: getEndTime(state),
 });
 
-const mapDispatchToProps = { onFinish: setFinish, setTimer: startTimer, setRace: startRace };
+const mapDispatchToProps = { onFinish: setFinish, setRace: startRace };
 
 class TouchTypingClass extends Component {
   constructor(props) {
@@ -136,7 +118,7 @@ class TouchTypingClass extends Component {
         afterFocusText: [],
       }));
 
-      onFinish();
+      onFinish(Date.now());
     }
   };
 
@@ -155,16 +137,11 @@ class TouchTypingClass extends Component {
     });
   };
 
-  onStart = () => {
-    const { setTimer } = this.props;
-    setTimer();
-  };
-
   render() {
     const { afterFocusText, typeFocusText, beforeFocusText, typingText, isError } = this.state;
-    const { isFinish, startTime, isTimer, setRace } = this.props;
+    const { endTime } = this.props;
 
-    const text = (
+    const textElement = (
       <span>
         <BeforeFocus>{`${beforeFocusText.join(' ')} `}</BeforeFocus>
         <Focus isError={isError}>{typeFocusText}</Focus>
@@ -172,22 +149,17 @@ class TouchTypingClass extends Component {
       </span>
     );
 
-    return startTime ? (
+    return (
       <>
-        <TextField text={text} />
+        <TextField text={textElement} />
         <TextInput
           value={typingText}
-          isFinish={isFinish}
+          isFinish={!!endTime}
           onInput={this.onInput}
           setRef={el => {
             this.input = el;
           }}
         />
-      </>
-    ) : (
-      <>
-        {isTimer && <Timer onEnd={setRace} />}
-        <Button onClick={this.onStart}>Start</Button>
       </>
     );
   }
@@ -197,10 +169,9 @@ export const TouchTyping = connect(mapStateToProps, mapDispatchToProps)(TouchTyp
 
 TouchTypingClass.propTypes = {
   text: PropTypes.string,
-  isFinish: PropTypes.bool,
-  isTimer: PropTypes.bool,
   onFinish: PropTypes.func,
   setRace: PropTypes.func,
   setTimer: PropTypes.func,
   startTime: PropTypes.number,
+  endTime: PropTypes.number,
 };

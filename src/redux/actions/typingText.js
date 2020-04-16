@@ -1,7 +1,8 @@
 import { FINISH, START_TIMER, START_RACE } from '../consts';
 
-export const setFinish = () => ({
+export const setFinish = time => ({
   type: FINISH,
+  time,
 });
 
 export const startRace = time => ({
