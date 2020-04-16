@@ -1,4 +1,4 @@
-import { FINISH, START_TIMER, START_RACE } from '../consts';
+import { RESTART_RACE, FINISH, START_TIMER, START_RACE } from '../consts';
 
 export const setFinish = time => ({
   type: FINISH,
@@ -12,4 +12,8 @@ export const startRace = time => ({
 
 export const startTimer = () => ({
   type: START_TIMER,
+});
+
+export const restartRace = () => ({
+  type: RESTART_RACE,
 });
