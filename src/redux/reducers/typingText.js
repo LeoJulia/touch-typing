@@ -1,4 +1,4 @@
-import { FINISH, START_TIMER, START_RACE } from '../consts';
+import { FINISH, START_TIMER, START_RACE, RESTART_RACE } from '../consts';
 
 const defaultStore = {
   typingText: {
@@ -21,6 +21,10 @@ export const typingText = (store = defaultStore.typingText, action) => {
         ...store,
         isTimer: false,
         startTime: action.time,
+      };
+    case RESTART_RACE:
+      return {
+        ...defaultStore,
       };
     default:
       return store;

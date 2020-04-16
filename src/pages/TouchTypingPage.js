@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { TouchTyping } from '../containers';
 import { getStartTime, getEndTime, getActiveText, getTimerData } from '../redux/selectors';
-import { startTimer, startRace } from '../redux/actions';
+import { startTimer, startRace, restartRace } from '../redux/actions';
 import { Results, Timer } from '../components';
 
 const Button = styled.button`
@@ -34,15 +34,19 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   setTimer: startTimer,
   start: startRace,
+  restart: restartRace,
 };
 
-const TouchTypingContainer = ({ startTime, endTime, setTimer, text, isTimer, start }) => (
+const TouchTypingContainer = ({ startTime, endTime, setTimer, text, isTimer, start, restart }) => (
   <>
     {!startTime && !endTime && <Button onClick={setTimer}>Start</Button>}
     {isTimer && <Timer onEnd={start} />}
     {startTime && !endTime && <TouchTyping />}
     {endTime && startTime && (
-      <Results startTime={startTime} endTime={endTime} symbolCount={text.length} />
+      <>
+        <Results startTime={startTime} endTime={endTime} symbolCount={text.length} />
+        <Button onClick={restart}>Restart</Button>
+      </>
     )}
   </>
 );
@@ -55,5 +59,6 @@ TouchTypingContainer.propTypes = {
   endTime: PropTypes.number,
   setTimer: PropTypes.func,
   start: PropTypes.func,
+  restart: PropTypes.func,
   isTimer: PropTypes.bool,
 };
