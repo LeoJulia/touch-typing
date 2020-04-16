@@ -24,7 +24,7 @@ export class TextInput extends Component {
   };
 
   render() {
-    const { value, isFinish, setRef } = this.props;
+    const { value, isFinish, setRef, maxLength } = this.props;
 
     return (
       <StyledTextInput
@@ -33,6 +33,7 @@ export class TextInput extends Component {
         value={value}
         disabled={isFinish}
         ref={setRef}
+        maxLength={maxLength}
       />
     );
   }
@@ -43,9 +44,11 @@ TextInput.propTypes = {
   isFinish: PropTypes.bool,
   onInput: PropTypes.func,
   setRef: PropTypes.func,
+  maxLength: PropTypes.number,
 };
 
 TextInput.defaultProps = {
   onInput: () => {},
   setRef: () => {},
+  maxLength: 100,
 };
