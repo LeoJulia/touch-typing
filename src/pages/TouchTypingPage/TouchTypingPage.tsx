@@ -10,17 +10,17 @@ import { Results, Timer } from './components';
 const Button = styled.button`
   margin-top: 15px;
   border-radius: 10px;
-  border: 1px dashed ${({ theme }) => theme.white};
+  border: 1px dashed var(--white);
   padding: 5px;
   width: 100px;
   text-align: center;
   background-color: transparent;
-  color: ${({ theme }) => theme.white};
+  color:var(--white);
   outline: none;
 
   &:hover {
     cursor: pointer;
-    background-color: ${({ theme }) => theme.red};
+    background-color: var(--red);
   }
 `;
 
