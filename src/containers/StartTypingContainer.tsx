@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { startTimer, changeLang } from '../redux/actions';
+import { startTimer, changeLang, fetchTexts } from '../redux/actions';
 import { Avatar } from '../components';
 
 const Button = styled.button`
@@ -37,19 +37,38 @@ const Container = styled.div`
 const mapDispatchToProps = {
   startTimer,
   changeLang,
+  fetchTexts,
 };
 
-const StartTyping = ({ startTimer, changeLang }) => (
-  <>
-    <Avatar />
-    <Container>
-      <DropDown onChange={({ target }) => changeLang(target.value)}>
-        <option value="en">English</option>
-        <option value="ru">Russian</option>
-      </DropDown>
-      <Button onClick={startTimer}>Start</Button>
-    </Container>
-  </>
-);
+interface StartTypingProps {
+  startTimer,
+  changeLang,
+  fetchTexts,
+}
+
+class StartTyping extends Component<StartTypingProps> {
+  componentDidMount() {
+    const { fetchTexts } = this.props;
+
+    fetchTexts();
+  }
+
+  render() {
+    const { startTimer, changeLang } = this.props;
+
+    return (
+      <>
+        <Avatar />
+        <Container>
+          <DropDown onChange={({ target }) => changeLang(target.value)}>
+            <option value="en">English</option>
+            <option value="ru">Russian</option>
+          </DropDown>
+          <Button onClick={startTimer}>Start</Button>
+        </Container>
+      </>
+    )
+  }
+};
 
 export const StartTypingContainer = connect(null, mapDispatchToProps)(StartTyping);
