@@ -5,14 +5,14 @@ const StyledTextInput = styled.input`
   margin-top: 15px;
   width: 40%;
   padding: 10px;
-  background-color: ${({ theme }) => theme.white};
-  color: ${({ theme }) => theme.dark};
+  background-color: var(--white);
+  color: var(--dark);
   border-radius: 15px;
   border: none;
   outline: none;
 
   &:disabled {
-    background-color: ${({ theme }) => theme.darkGray};
+    background-color: var(--darkGray);
   }
 `;
 

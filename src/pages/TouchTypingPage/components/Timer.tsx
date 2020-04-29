@@ -10,11 +10,11 @@ const TimerContainer = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: ${({ theme }) => theme.grayTransparent};
+  background-color: var(--grayTransparent);
 
   & span {
     display: block;
-    color: ${({ theme }) => theme.white};
+    color: var(--white);
     font-size: 150px;
   }
 `;

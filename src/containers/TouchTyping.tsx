@@ -7,16 +7,15 @@ import { setFinish, startRace } from '../redux/actions';
 import { TextField, TextInput } from '../components';
 
 const BeforeFocus = styled.span`
-  color: ${({ theme }) => theme.darkGray};
+  color: var(--darkGray);
 `;
 
-interface FocusProps { 
-  isError?: any, 
-  theme?: any 
+interface FocusProps {
+  isError?: any,
 }
 
 const Focus = styled.span<FocusProps>`
-  color: ${({ isError, theme }) => (isError ? theme.red : theme.blue)};
+  color: ${({ isError }) => (isError ? 'var(--red)' : 'var(--blue)')};
   text-decoration: underline;
 `;
 
@@ -36,9 +35,9 @@ interface TouchTypingProps {
 }
 
 interface TouchTypingState {
-  typeFocusText, 
+  typeFocusText,
   typingText,
-  isError, 
+  isError,
   beforeFocusText,
   afterFocusText,
   isSuccessInput
@@ -161,12 +160,12 @@ class TouchTypingClass extends Component<TouchTypingProps, TouchTypingState> {
   render() {
     const { afterFocusText, typeFocusText, beforeFocusText, typingText, isError } = this.state;
     const { endTime } = this.props;
-    
+
     const textElement = (
       <span>
         <BeforeFocus>{`${beforeFocusText.join(' ')} `}</BeforeFocus>
         <Focus isError={isError}>{typeFocusText}</Focus>
-        {` ${afterFocusText.join(' ')}`}
+        {` ${afterFocusText.join(' ')} `}
       </span>
     );
 

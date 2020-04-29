@@ -1,7 +1,9 @@
-$white: #f9f7f7;
-$gray: #dbe2ef;
-$darkGray: #808080;
-$grayTransparent: rgba($gray, 0.5);
-$blue: #3f72af;
-$dark: #112d4e;
-$red: #f28c9f;
+:root {
+  --white: #f9f7f7;
+  --gray: #dbe2ef;
+  --darkGray: #808080;
+  --grayTransparent: rgba(220, 227, 239, 0.5);
+  --blue: #3f72af;
+  --dark: #112d4e;
+  --red: #f28c9f;
+}

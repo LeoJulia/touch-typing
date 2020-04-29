@@ -5,7 +5,7 @@ const AvatarImg = styled.img`
   background-image: url(${({ img }: { img: any }) => img});
   width: 50px;
   height: 50px;
-  border: 1px dashed ${({ theme }) => theme.white};
+  border: 1px dashed var(--white);
   border-radius: 50%;
   margin-bottom: 15px;
 `;
