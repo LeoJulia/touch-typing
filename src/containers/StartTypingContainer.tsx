@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { startTimer, changeLang, fetchTexts } from '../redux/actions';
+import {
+  startTimer,
+  changeLang,
+  fetchTexts,
+  ActionCreator,
+  TextConfigCreator,
+} from '../redux/actions';
 import { Avatar } from '../components';
 
 const Button = styled.button`
@@ -41,9 +47,9 @@ const mapDispatchToProps = {
 };
 
 interface StartTypingProps {
-  startTimer,
-  changeLang,
-  fetchTexts,
+  startTimer(): ActionCreator;
+  changeLang(langCode: string): TextConfigCreator;
+  fetchTexts();
 }
 
 class StartTyping extends Component<StartTypingProps> {
@@ -67,8 +73,8 @@ class StartTyping extends Component<StartTypingProps> {
           <Button onClick={startTimer}>Start</Button>
         </Container>
       </>
-    )
+    );
   }
-};
+}
 
 export const StartTypingContainer = connect(null, mapDispatchToProps)(StartTyping);

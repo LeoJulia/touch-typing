@@ -20,7 +20,7 @@ const TimerContainer = styled.div`
 `;
 
 interface TimerState {
-  value
+  value: number;
 }
 
 export class Timer extends Component<any, TimerState> {

@@ -1,11 +1,21 @@
 import { FINISH, START_TIMER, START_RACE, RESTART_RACE } from '../consts';
+import { ActionCreator } from '../actions';
 
-const defaultStore = {
+export interface ITypingText {
+  isTimer: boolean;
+  activeText?: string;
+  startTime?: number;
+  endTime?: number;
+}
+
+interface IActionTypingText extends ActionCreator {}
+
+const defaultStore: ITypingText = {
   activeText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   isTimer: false,
 };
 
-export const typingText = (store = defaultStore, action) => {
+export const typingText = (store = defaultStore, action: IActionTypingText) => {
   switch (action.type) {
     case FINISH:
       return { ...store, endTime: action.time };

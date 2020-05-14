@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { StartTypingContainer, TouchTyping } from '../../containers';
 import { getStartTime, getEndTime, getActiveText, getTimerData } from '../../redux/selectors';
-import { startRace, restartRace } from '../../redux/actions';
+import { startRace, restartRace, ActionCreator } from '../../redux/actions';
 import { Results, Timer } from './components';
 
 const Button = styled.button`
@@ -15,7 +15,7 @@ const Button = styled.button`
   width: 100px;
   text-align: center;
   background-color: transparent;
-  color:var(--white);
+  color: var(--white);
   outline: none;
 
   &:hover {
@@ -24,29 +24,46 @@ const Button = styled.button`
   }
 `;
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   startTime: getStartTime(state),
   endTime: getEndTime(state),
   text: getActiveText(state),
   isTimer: getTimerData(state),
 });
+
 const mapDispatchToProps = {
-  start: startRace,
-  restart: restartRace,
+  startRace,
+  restartRace,
 };
 
-const TouchTypingContainer = ({ startTime, endTime, text, isTimer, start, restart }) => (
+interface TouchTypingPageImplProps {
+  startTime: number;
+  endTime: number;
+  text: string;
+  isTimer: boolean;
+  startRace(time: number): ActionCreator;
+  restartRace(): ActionCreator;
+}
+
+const TouchTypingPageImpl = ({
+  startTime,
+  endTime,
+  text,
+  isTimer,
+  startRace,
+  restartRace,
+}: TouchTypingPageImplProps) => (
   <>
     {!startTime && !endTime && <StartTypingContainer />}
-    {isTimer && <Timer onEnd={start} />}
+    {isTimer && <Timer onEnd={startRace} />}
     {startTime && !endTime && <TouchTyping />}
     {endTime && startTime && (
       <>
         <Results startTime={startTime} endTime={endTime} symbolCount={text.length} />
-        <Button onClick={restart}>Restart</Button>
+        <Button onClick={() => restartRace()}>Restart</Button>
       </>
     )}
   </>
 );
 
-export const TouchTypingPage = connect(mapStateToProps, mapDispatchToProps)(TouchTypingContainer);
+export const TouchTypingPage = connect(mapStateToProps, mapDispatchToProps)(TouchTypingPageImpl);

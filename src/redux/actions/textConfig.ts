@@ -1,29 +1,34 @@
 import { CHANGE_LANG, REQUEST_TEXTS, RECEIVE_TEXTS } from '../consts';
 
-export const changeLang = langCode => ({
+export interface TextConfigCreator {
+  type: string;
+  langCode?: string;
+  texts?: string[];
+}
+
+export const changeLang = (langCode: string): TextConfigCreator => ({
   type: CHANGE_LANG,
   langCode,
 });
 
-export const requestTexts = () => ({
+export const requestTexts = (): TextConfigCreator => ({
   type: REQUEST_TEXTS,
 });
 
-export const receiveTexts = json => ({
+export const receiveTexts = (json): TextConfigCreator => ({
   type: RECEIVE_TEXTS,
   texts: json,
 });
 
-// eslint-disable-next-line arrow-body-style
 export const fetchTexts = () => {
-  return function(dispatch) {
+  return (dispatch) => {
     dispatch(requestTexts());
 
     return fetch('https://glacial-earth-88103.herokuapp.com/texts')
       .then(
-        res => res.json(),
-        error => console.error('An error occurred.', error),
+        (res) => res.json(),
+        (error) => console.error('An error occurred.', error),
       )
-      .then(json => dispatch(receiveTexts(json)));
+      .then((json) => dispatch(receiveTexts(json)));
   };
 };

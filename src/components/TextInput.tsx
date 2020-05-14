@@ -17,11 +17,11 @@ const StyledTextInput = styled.input`
 `;
 
 export interface TextInputProps {
-  onInput: any,
-  value: any,
-  isFinish: any,
-  setRef: any,
-  maxLength?: any
+  onInput: any;
+  value: any;
+  isFinish: any;
+  setRef: any;
+  maxLength?: any;
 }
 
 export class TextInput extends Component<TextInputProps> {

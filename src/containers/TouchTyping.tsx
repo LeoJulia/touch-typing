@@ -11,7 +11,7 @@ const BeforeFocus = styled.span`
 `;
 
 interface FocusProps {
-  isError?: any,
+  isError?: any;
 }
 
 const Focus = styled.span<FocusProps>`
@@ -19,7 +19,7 @@ const Focus = styled.span<FocusProps>`
   text-decoration: underline;
 `;
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   text: getActiveText(state),
   startTime: getStartTime(state),
   endTime: getEndTime(state),
@@ -28,19 +28,19 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = { setFinish, startRace };
 
 interface TouchTypingProps {
-  text,
-  startTime,
-  setFinish,
-  endTime
+  text;
+  startTime;
+  setFinish;
+  endTime;
 }
 
 interface TouchTypingState {
-  typeFocusText,
-  typingText,
-  isError,
-  beforeFocusText,
-  afterFocusText,
-  isSuccessInput
+  typeFocusText;
+  typingText;
+  isError;
+  beforeFocusText;
+  afterFocusText;
+  isSuccessInput;
 }
 
 class TouchTypingClass extends Component<TouchTypingProps, TouchTypingState> {
@@ -116,7 +116,7 @@ class TouchTypingClass extends Component<TouchTypingProps, TouchTypingState> {
       const newBeforeFocusText = typeFocusText;
       const newTypeFocusText = newAfterFocusText.shift();
 
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         typeFocusText: newTypeFocusText,
         afterFocusText: newAfterFocusText,
         beforeFocusText: [...prevState.beforeFocusText, newBeforeFocusText],
@@ -130,7 +130,7 @@ class TouchTypingClass extends Component<TouchTypingProps, TouchTypingState> {
       const { setFinish } = this.props;
       const newBeforeFocusText = typeFocusText;
 
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         typeFocusText: '',
         typingText: '',
         isSuccessInput: true,
@@ -142,7 +142,7 @@ class TouchTypingClass extends Component<TouchTypingProps, TouchTypingState> {
     }
   };
 
-  onInput = value => {
+  onInput = (value) => {
     const { isSuccessInput } = this.state;
 
     if (isSuccessInput) {
@@ -176,7 +176,7 @@ class TouchTypingClass extends Component<TouchTypingProps, TouchTypingState> {
           value={typingText}
           isFinish={!!endTime}
           onInput={this.onInput}
-          setRef={el => {
+          setRef={(el) => {
             this.input = el;
           }}
         />
