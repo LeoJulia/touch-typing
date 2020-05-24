@@ -12,8 +12,8 @@ export const Results = ({ startTime, endTime, symbolCount }) => {
 
   return (
     <>
-      <span>{msToMinutesAndSeconds(seconds)}</span>
-      <span>{Math.round(speed)}</span>
+      <span>{`Время прохождения: ${msToMinutesAndSeconds(seconds)}`}</span>
+      <span>{`Скорость: ${Math.round(speed)} зн/мин`}</span>
     </>
   );
 };

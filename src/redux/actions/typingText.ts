@@ -3,6 +3,7 @@ import { RESTART_RACE, FINISH, START_TIMER, START_RACE } from '../consts';
 export interface ActionCreator {
   type: string;
   time?: number;
+  text?: string;
 }
 
 export const setFinish = (time: number): ActionCreator => ({
@@ -15,8 +16,9 @@ export const startRace = (time: number): ActionCreator => ({
   time,
 });
 
-export const startTimer = (): ActionCreator => ({
+export const startTimer = (text): ActionCreator => ({
   type: START_TIMER,
+  text,
 });
 
 export const restartRace = (): ActionCreator => ({

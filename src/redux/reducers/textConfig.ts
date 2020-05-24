@@ -3,7 +3,7 @@ import { CHANGE_LANG, REQUEST_TEXTS, RECEIVE_TEXTS } from '../consts';
 const defaultStore = {
   selectedLang: 'en',
   isFetching: false,
-  items: [],
+  texts: [],
   selectedText: null,
 };
 
@@ -14,7 +14,7 @@ export const textConfig = (store = defaultStore, action) => {
     case REQUEST_TEXTS:
       return { ...store, isFetching: true };
     case RECEIVE_TEXTS:
-      return { ...store, isFetching: false, items: action.texts };
+      return { ...store, isFetching: false, texts: action.texts };
     default:
       return store;
   }

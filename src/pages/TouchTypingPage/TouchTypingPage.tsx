@@ -60,7 +60,7 @@ const TouchTypingPageImpl = ({
     {endTime && startTime && (
       <>
         <Results startTime={startTime} endTime={endTime} symbolCount={text.length} />
-        <Button onClick={() => restartRace()}>Restart</Button>
+        <Button onClick={() => restartRace()}>На главную</Button>
       </>
     )}
   </>

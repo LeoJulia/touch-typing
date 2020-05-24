@@ -23,6 +23,7 @@ export const typingText = (store = defaultStore, action: IActionTypingText) => {
       return {
         ...store,
         isTimer: true,
+        activeText: action.text,
       };
     case START_RACE:
       return {

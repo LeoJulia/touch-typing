@@ -126,7 +126,11 @@ class TouchTypingClass extends Component<TouchTypingProps, TouchTypingState> {
       }));
     }
 
-    if (afterFocusText.length === 0 && (key === '.' || key === '!' || key === '?') && !isError) {
+    if (
+      afterFocusText.length === 0 &&
+      (key === '.' || key === '!' || key === '?' || key === ' ') &&
+      !isError
+    ) {
       const { setFinish } = this.props;
       const newBeforeFocusText = typeFocusText;
 

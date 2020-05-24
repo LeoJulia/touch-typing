@@ -24,7 +24,7 @@ export const fetchTexts = () => {
   return (dispatch) => {
     dispatch(requestTexts());
 
-    return fetch('https://glacial-earth-88103.herokuapp.com/texts')
+    return fetch('https://glacial-earth-88103.herokuapp.com/training')
       .then(
         (res) => res.json(),
         (error) => console.error('An error occurred.', error),
