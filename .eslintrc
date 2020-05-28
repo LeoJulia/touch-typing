@@ -1,53 +1,21 @@
 {
-    "env": {
-        "es6": true,
-        "browser": true,
-        "node": true
-    },
-    "extends": ["airbnb", "plugin:jest/recommended"],
-    "plugins": [
-        "babel",
-        "import",
-        "jsx-a11y",
-        "react",
-        "prettier"
-    ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
-    "rules": {
-        "operator-linebreak": "off",
-        "no-use-before-define": "off",
-        "arrow-parens": "off", // Несовместимо с prettier
-        "object-curly-newline": "off", // Несовместимо с prettier
-        "no-mixed-operators": "off", // Несовместимо с prettier
-        "function-paren-newline": "off", // Несовместимо с prettier
-        "no-plusplus": "off",
-        "space-before-function-paren": 0, // Несовместимо с prettier
-
-        "max-len": ["error", 100, 2, { "ignoreUrls": true }], // airbnb позволяет некоторые пограничные случаи
-
-        "no-param-reassign": "off", // Это - не наш стиль?
-
-        "react/require-default-props": "off", // airbnb использует уведомление об ошибке
-        "react/forbid-prop-types": "off", // airbnb использует уведомление об ошибке
-        "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // airbnb использует .jsx
-
-        "react/no-unused-prop-types": "off", // Это всё ещё работает нестабильно
-
-        "prettier/prettier": ["error"],
-
-        "import/prefer-default-export":  "off",
-        "linebreak-style": [0, "error", "windows"],
-        "import/order": "off",
-        "import/no-dynamic-require": "off",
-        "radix": "warn",
-        "global-require": "off",
-        "import/no-cycle": [2, { "maxDepth": 1 }]
+  "extends": ["react-app", "airbnb-typescript", "prettier"],
+  "plugins": ["@typescript-eslint", "import", "react", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeature": {
+      "jsx": true
     }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react/prop-types": "off",
+    "import/no-cycle": ["warn", { "maxDepth": 1 }],
+    "no-shadow": "off",
+    "no-plusplus": "off",
+    "import/prefer-default-export": "off"
+  }
 }
