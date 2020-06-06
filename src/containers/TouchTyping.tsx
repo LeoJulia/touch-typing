@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import { getActiveText, getStartTime, getEndTime } from '../redux/selectors';
-import { setFinish, startRace } from '../redux/actions';
+import { setFinish, startRace, restartRace } from '../redux/actions';
 import { TextField, TextInput } from '../components';
 
 const BeforeFocus = styled.span`
@@ -25,13 +25,31 @@ const mapStateToProps = (state) => ({
   endTime: getEndTime(state),
 });
 
-const mapDispatchToProps = { setFinish, startRace };
+const Button = styled.button`
+  margin-top: 15px;
+  border-radius: 10px;
+  border: 1px dashed var(--white);
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+  background-color: transparent;
+  color: var(--white);
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--red);
+  }
+`;
+
+const mapDispatchToProps = { setFinish, startRace, restartRace };
 
 interface TouchTypingProps {
   text;
   startTime;
   setFinish;
   endTime;
+  restartRace;
 }
 
 interface TouchTypingState {
@@ -163,7 +181,7 @@ class TouchTypingClass extends Component<TouchTypingProps, TouchTypingState> {
 
   render() {
     const { afterFocusText, typeFocusText, beforeFocusText, typingText, isError } = this.state;
-    const { endTime } = this.props;
+    const { endTime, restartRace } = this.props;
 
     const textElement = (
       <span>
@@ -184,6 +202,7 @@ class TouchTypingClass extends Component<TouchTypingProps, TouchTypingState> {
             this.input = el;
           }}
         />
+        <Button onClick={() => restartRace()}>На главную</Button>
       </>
     );
   }

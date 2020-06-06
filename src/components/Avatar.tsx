@@ -7,7 +7,6 @@ const AvatarImg = styled.img`
   height: 50px;
   border: 1px dashed var(--white);
   border-radius: 50%;
-  margin-bottom: 15px;
 `;
 
 export const Avatar = ({ img }) => <AvatarImg img={img} />;

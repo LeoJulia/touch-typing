@@ -11,7 +11,7 @@ export interface ITypingText {
 interface IActionTypingText extends ActionCreator {}
 
 const defaultStore: ITypingText = {
-  activeText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  activeText: '',
   isTimer: false,
 };
 
